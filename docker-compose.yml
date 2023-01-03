@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  masstransit.saga:
+    image: ${DOCKER_REGISTRY-}masstransit
+    build:
+      context: .
+      dockerfile: src/MassTransit.Saga/Dockerfile

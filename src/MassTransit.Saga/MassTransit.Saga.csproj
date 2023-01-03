@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>1a041135-dba4-4f95-ad3a-5a51ca2c8c4b</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.10" />
+        <PackageReference Include="MassTransit.Marten" Version="8.0.10" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+</Project>
