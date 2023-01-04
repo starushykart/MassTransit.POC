@@ -18,7 +18,7 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
             x.Delay = TimeSpan.FromSeconds(50);
             x.Received = e => e.CorrelateById(context => context.Message.OrderId);
         });
-        
+
         Initially(
             When(SubmitOrder)
                 .Activity(x => x.OfType<SaveOrderActivity>())

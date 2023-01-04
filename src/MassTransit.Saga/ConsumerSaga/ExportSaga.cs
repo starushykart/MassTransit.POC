@@ -7,7 +7,6 @@ public class ExportSaga :
     ISaga,
     InitiatedBy<SubmitExport>,
     Orchestrates<ExportCompleted>
-    
 {
     [Identity]
     public Guid CorrelationId { get; set; }
