@@ -34,13 +34,11 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
                 .TransitionTo(Processing));
         
         During(Processing, When(OrderCompleted)
-            .TransitionTo(Completed)
-            .Unschedule(OrderExpired));
+            .TransitionTo(Completed));
 
         DuringAny(When(OrderCancelled)
             .TransitionTo(Cancelled)
-            .Then(x => x.Saga.CancelledAt = DateTime.Now)
-            .Unschedule(OrderExpired));
+            .Then(x => x.Saga.CancelledAt = DateTime.Now));
         
         DuringAny(
             When(OrderExpired!.Received)
@@ -51,6 +49,9 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
         DuringAny(
             When(OrderReady)
                 .Finalize());
+        
+        WhenEnter(Completed, x=>x.Unschedule(OrderExpired));
+        WhenEnter(Cancelled, x=>x.Unschedule(OrderExpired));
     }
     
     // saga states
