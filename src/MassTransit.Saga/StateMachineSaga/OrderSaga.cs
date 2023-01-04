@@ -34,7 +34,8 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
                 .TransitionTo(Processing));
         
         During(Processing, When(OrderCompleted)
-            .TransitionTo(Completed));
+            .TransitionTo(Completed)
+            .Unschedule(OrderExpired));
 
         DuringAny(When(OrderCancelled)
             .TransitionTo(Cancelled)
