@@ -1,4 +1,4 @@
-using MassTransit.Saga.StateMachine.Events;
+using MassTransit.Saga.StateMachineSaga.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MassTransit.Saga.Controllers;

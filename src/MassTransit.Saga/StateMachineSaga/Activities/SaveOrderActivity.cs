@@ -1,6 +1,6 @@
-using MassTransit.Saga.StateMachine.Events;
+using MassTransit.Saga.StateMachineSaga.Events;
 
-namespace MassTransit.Saga.StateMachine.Activities;
+namespace MassTransit.Saga.StateMachineSaga.Activities;
 
 public class SaveOrderActivity : IStateMachineActivity<OrderState, SubmitOrder>
 {

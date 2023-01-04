@@ -1,7 +1,7 @@
-using MassTransit.Saga.StateMachine.Activities;
-using MassTransit.Saga.StateMachine.Events;
+using MassTransit.Saga.StateMachineSaga.Activities;
+using MassTransit.Saga.StateMachineSaga.Events;
 
-namespace MassTransit.Saga.StateMachine;
+namespace MassTransit.Saga.StateMachineSaga;
 
 public class OrderSaga : MassTransitStateMachine<OrderState>
 {
@@ -35,6 +35,7 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
 
         DuringAny(When(OrderCancelled)
             .TransitionTo(Cancelled)
+            .Then(x => x.Saga.CancelledAt = DateTime.Now)
             .Unschedule(OrderExpired));
         
         DuringAny(

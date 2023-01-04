@@ -1,4 +1,4 @@
-namespace MassTransit.Saga.StateMachine;
+namespace MassTransit.Saga.StateMachineSaga;
 
 public class OrderState : SagaStateMachineInstance
 {

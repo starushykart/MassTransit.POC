@@ -1,4 +1,4 @@
-namespace MassTransit.Saga.StateMachine.Events;
+namespace MassTransit.Saga.StateMachineSaga.Events;
 
 public record OrderExpired
 {
