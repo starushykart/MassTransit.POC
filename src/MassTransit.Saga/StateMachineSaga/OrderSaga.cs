@@ -24,6 +24,9 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
                 .Activity(x => x.OfType<SaveOrderActivity>())
                 .TransitionTo(Submitted)
                 .Schedule(OrderExpired, context => new OrderExpired { OrderId = context.Saga.CorrelationId })
+                
+                // on exception, activity will be called in fault context. so Fault method will be called
+                .Catch<Exception>(x=>x.Activity(y=>y.OfType<SaveOrderActivity>()))
         );
 
         During(Submitted, 
