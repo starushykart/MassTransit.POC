@@ -1,8 +1,11 @@
+using System.Reflection;
 using Amazon.SimpleNotificationService;
 using Amazon.SQS;
+using FluentValidation;
 using MassTransit;
-using MassTransit.Saga.ConsumerSaga;
-using MassTransit.Saga.StateMachineSaga;
+using Mediator;
+using Mediator.Events;
+using Mediator.Filters;
 using Weasel.Postgresql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,24 +13,31 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddValidatorsFromAssembly(typeof(AcceptMediatorActionValidator).Assembly);
+
+builder.Services.AddMediator(x =>
+{
+    x.AddConsumers(typeof(MediatorActionConsumer).Assembly);
+    
+    x.ConfigureMediator((context, cfg) =>
+    {
+        cfg.UseSendFilter(typeof(ValidationFilter<>), context);
+    });
+});
 
 builder.Services.AddMassTransit(cfg =>
 {
-    // state machine
-    cfg.AddSagaStateMachine<OrderSaga, OrderState>()
-        .MartenRepository(builder.Configuration.GetConnectionString("Database"), opt =>
-        {
-            opt.Schema.For<OrderState>().UseOptimisticConcurrency(true);
-            opt.AutoCreateSchemaObjects = AutoCreate.All;
-        });
+    var assembly = Assembly.GetExecutingAssembly();
     
-    //consumer saga
-    cfg.AddSaga<ExportSaga>()
-        .MartenRepository(builder.Configuration.GetConnectionString("Database"), opt =>
-        {
-            opt.AutoCreateSchemaObjects = AutoCreate.All;
-        });
-    
+    cfg.AddSagaStateMachines(assembly);
+    cfg.AddSagas(assembly);
+    cfg.AddConsumers(assembly);
+
+    cfg.SetMartenSagaRepositoryProvider(builder.Configuration.GetConnectionString("Database"), opt =>
+    {
+        opt.AutoCreateSchemaObjects = AutoCreate.All;
+    });
+
     cfg.AddDelayedMessageScheduler();
     cfg.UsingAmazonSqs((context, x) =>
     {

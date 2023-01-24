@@ -1,4 +1,4 @@
-namespace MassTransit.Saga.StateMachineSaga.Events;
+namespace SagaStateMachine.Events;
 
 public record OrderCompleted
 {

@@ -1,9 +1,10 @@
 using Marten.Schema;
-using MassTransit.Saga.StateMachineSaga.Events;
+using MassTransit;
+using SagaConsumer.Events;
 
-namespace MassTransit.Saga.ConsumerSaga;
+namespace SagaConsumer;
 
-public class ExportSaga : 
+public class ExportConsumerSaga : 
     ISaga,
     InitiatedBy<SubmitExport>,
     Orchestrates<ExportCompleted>
@@ -14,7 +15,7 @@ public class ExportSaga :
     
     public Task Consume(ConsumeContext<SubmitExport> context)
     {
-        //save to database
+        // some action
         return Task.CompletedTask;
     }
 
@@ -23,8 +24,8 @@ public class ExportSaga :
         CompletedAt = DateTime.UtcNow;
         
         // finalize saga. will be deleted from db
-        // var sagaContext = context as SagaConsumeContext<ExportSaga, ExportCompleted>;
-        // sagaContext?.SetCompleted();
+        // var sagaContext = context as SagaConsumeContext<ExportConsumerSaga, ExportCompleted>;
+        // sagaContext.SetCompleted();
         
         return Task.CompletedTask;
     }

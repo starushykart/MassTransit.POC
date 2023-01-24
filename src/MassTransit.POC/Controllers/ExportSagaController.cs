@@ -1,7 +1,7 @@
-using MassTransit.Saga.StateMachineSaga.Events;
 using Microsoft.AspNetCore.Mvc;
+using SagaConsumer.Events;
 
-namespace MassTransit.Saga.Controllers;
+namespace MassTransit.POC.Controllers;
 
 [ApiController]
 [Route("[controller]")]

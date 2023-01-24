@@ -1,4 +1,6 @@
-namespace MassTransit.Saga.StateMachineSaga.Events;
+using MassTransit;
+
+namespace SagaConsumer.Events;
 
 public record SubmitExport : CorrelatedBy<Guid>
 {

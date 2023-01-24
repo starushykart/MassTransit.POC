@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.Saga", "src\MassTransit.Saga\MassTransit.Saga.csproj", "{7A7CD641-2423-4DB0-A35A-7B266884D124}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransit.POC", "src\MassTransit.POC\MassTransit.POC.csproj", "{7A7CD641-2423-4DB0-A35A-7B266884D124}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D6837541-1559-49CD-BCE7-D5EDF572A8AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaStateMachine", "SagaStateMachine\SagaStateMachine.csproj", "{EABA026E-6CA7-4566-92E3-1AEC030CBAA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediator", "Mediator\Mediator.csproj", "{41B4025C-413C-4483-AF48-C66FBA742B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaConsumer", "SagaConsumer\SagaConsumer.csproj", "{CA72A6DB-672C-49CF-88D6-6FD52E039048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageConsumer", "MessageConsumer\MessageConsumer.csproj", "{6EF5561C-79BE-46E3-B970-D58B6A1361FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +27,21 @@ Global
 		{D6837541-1559-49CD-BCE7-D5EDF572A8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6837541-1559-49CD-BCE7-D5EDF572A8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6837541-1559-49CD-BCE7-D5EDF572A8AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EABA026E-6CA7-4566-92E3-1AEC030CBAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EABA026E-6CA7-4566-92E3-1AEC030CBAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABA026E-6CA7-4566-92E3-1AEC030CBAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EABA026E-6CA7-4566-92E3-1AEC030CBAA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B4025C-413C-4483-AF48-C66FBA742B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B4025C-413C-4483-AF48-C66FBA742B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B4025C-413C-4483-AF48-C66FBA742B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B4025C-413C-4483-AF48-C66FBA742B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA72A6DB-672C-49CF-88D6-6FD52E039048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA72A6DB-672C-49CF-88D6-6FD52E039048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA72A6DB-672C-49CF-88D6-6FD52E039048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA72A6DB-672C-49CF-88D6-6FD52E039048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF5561C-79BE-46E3-B970-D58B6A1361FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF5561C-79BE-46E3-B970-D58B6A1361FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF5561C-79BE-46E3-B970-D58B6A1361FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF5561C-79BE-46E3-B970-D58B6A1361FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

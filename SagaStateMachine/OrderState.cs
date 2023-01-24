@@ -1,9 +1,10 @@
-namespace MassTransit.Saga.StateMachineSaga;
+using MassTransit;
+
+namespace SagaStateMachine;
 
 public class OrderState : SagaStateMachineInstance
 {
     public Guid CorrelationId { get; set; }
-
     public string CurrentState { get; set; } = default!;
     
     public DateTime? CancelledAt { get; set; }

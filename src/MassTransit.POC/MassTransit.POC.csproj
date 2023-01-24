@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
         <UserSecretsId>1a041135-dba4-4f95-ad3a-5a51ca2c8c4b</UserSecretsId>
@@ -10,8 +10,20 @@
 
     <ItemGroup>
         <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.10" />
-        <PackageReference Include="MassTransit.Marten" Version="8.0.10" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MassTransit" />
+      <Folder Include="MassTransit\ConsumerSaga" />
+      <Folder Include="MassTransit\Mediator" />
+      <Folder Include="MassTransit\StateMachineSaga" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Mediator\Mediator.csproj" />
+      <ProjectReference Include="..\..\SagaConsumer\SagaConsumer.csproj" />
+      <ProjectReference Include="..\..\SagaStateMachine\SagaStateMachine.csproj" />
     </ItemGroup>
 
 </Project>

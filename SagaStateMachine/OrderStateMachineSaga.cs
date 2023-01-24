@@ -1,13 +1,15 @@
-using MassTransit.Saga.StateMachineSaga.Activities;
-using MassTransit.Saga.StateMachineSaga.Events;
+using MassTransit;
+using SagaStateMachine.Activities;
+using SagaStateMachine.Events;
 
-namespace MassTransit.Saga.StateMachineSaga;
+namespace SagaStateMachine;
 
-public class OrderSaga : MassTransitStateMachine<OrderState>
+public class OrderStateMachineSaga : MassTransitStateMachine<OrderState>
 {
-    public OrderSaga()
+    public OrderStateMachineSaga()
     {
         InstanceState(x => x.CurrentState);
+        
         Event(() => SubmitOrder, x => x.CorrelateById(context => context.Message.OrderId));
         Event(() => OrderProcessing, x => x.CorrelateById(context => context.Message.OrderId));
         Event(() => OrderCancelled, x => x.CorrelateById(context => context.Message.OrderId));
@@ -62,7 +64,7 @@ public class OrderSaga : MassTransitStateMachine<OrderState>
     public State Expired { get; private set; }
 
     // saga events
-    public Event<SubmitOrder> SubmitOrder { get; private set; }
+    public Event<SubmitOrder> SubmitOrder { get; private set; } = null!;
     public Event<OrderProcessing> OrderProcessing { get; private set; }
     public Event<OrderCancelled> OrderCancelled { get; private set; }
     public Event<OrderCompleted> OrderCompleted { get; private set; }
