@@ -15,7 +15,6 @@ public class ExportConsumerSaga :
     
     public Task Consume(ConsumeContext<SubmitExport> context)
     {
-        // some action
         return Task.CompletedTask;
     }
 

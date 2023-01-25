@@ -14,14 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="MassTransit" />
-      <Folder Include="MassTransit\ConsumerSaga" />
-      <Folder Include="MassTransit\Mediator" />
-      <Folder Include="MassTransit\StateMachineSaga" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\Mediator\Mediator.csproj" />
       <ProjectReference Include="..\..\SagaConsumer\SagaConsumer.csproj" />
       <ProjectReference Include="..\..\SagaStateMachine\SagaStateMachine.csproj" />
     </ItemGroup>

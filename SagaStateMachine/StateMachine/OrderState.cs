@@ -1,14 +1,16 @@
+using Marten.Schema;
 using MassTransit;
 
 namespace SagaStateMachine;
 
 public class OrderState : SagaStateMachineInstance
 {
+    [Identity]
     public Guid CorrelationId { get; set; }
     public string CurrentState { get; set; } = default!;
     
-    public DateTime? CancelledAt { get; set; }
-    public DateTime? CompletedAt { get; set; }
+    public DateTime? SubmittedAt { get; set; }
+    public DateTime? ExpiredAt { get; set; }
     public Guid? ExpirationToken { get; set; }
     public int ReadyEventStatus { get; set; }
 }

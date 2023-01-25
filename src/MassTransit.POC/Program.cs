@@ -3,9 +3,11 @@ using Amazon.SimpleNotificationService;
 using Amazon.SQS;
 using FluentValidation;
 using MassTransit;
-using Mediator;
-using Mediator.Events;
-using Mediator.Filters;
+using SagaConsumer;
+using SagaStateMachine.Mediator;
+using SagaStateMachine.Mediator.Filters;
+using SagaStateMachine.Mediator.Models;
+using SagaStateMachine.StateMachine;
 using Weasel.Postgresql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,12 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddValidatorsFromAssembly(typeof(AcceptMediatorActionValidator).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(SubmitOrderValidator).Assembly);
 
 builder.Services.AddMediator(x =>
 {
-    x.AddConsumers(typeof(MediatorActionConsumer).Assembly);
-    
+    x.AddConsumer<SubmitOrderConsumer>();
+
     x.ConfigureMediator((context, cfg) =>
     {
         cfg.UseSendFilter(typeof(ValidationFilter<>), context);
@@ -27,11 +29,9 @@ builder.Services.AddMediator(x =>
 
 builder.Services.AddMassTransit(cfg =>
 {
-    var assembly = Assembly.GetExecutingAssembly();
-    
-    cfg.AddSagaStateMachines(assembly);
-    cfg.AddSagas(assembly);
-    cfg.AddConsumers(assembly);
+    cfg.AddSagas(typeof(ExportConsumerSaga).Assembly);
+    cfg.AddActivities(typeof(OrderCourierStateMachine).Assembly);
+    cfg.AddSagaStateMachines(typeof(OrderCourierStateMachine).Assembly);
 
     cfg.SetMartenSagaRepositoryProvider(builder.Configuration.GetConnectionString("Database"), opt =>
     {

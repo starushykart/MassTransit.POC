@@ -1,4 +1,4 @@
-namespace SagaStateMachine.Events;
+namespace SagaStateMachine.StateMachine.Events;
 
 public record OrderCancelled
 {
