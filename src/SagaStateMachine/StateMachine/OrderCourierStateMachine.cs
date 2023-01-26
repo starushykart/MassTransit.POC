@@ -33,7 +33,7 @@ public class OrderCourierStateMachine : MassTransitStateMachine<OrderState>
         
         During(Submitted, 
             When(ProcessOrder)
-                .Activity(x=>x.OfType<ProcessOrderActivity>())
+                //.Activity(x=>x.OfType<ProcessOrderActivity>())
                 .Then(x=> _logger.LogInformation("State machine. {Activity} with routing slip for Order {OrderId} executing", nameof(ProcessOrderActivity), x.Saga.CorrelationId))
                 .TransitionTo(Processed));
         

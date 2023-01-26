@@ -18,10 +18,9 @@ public class SubmitOrderConsumer : IConsumer<ISubmitOrder>
     
     public async Task Consume(ConsumeContext<ISubmitOrder> context)
     {
-        //throw new Exception();
         var id = NewId.Next();
         
-        await _bus.Publish<OrderSubmitted>(new { OrderId = id });
+        //await _bus.Publish<OrderSubmitted>(new { OrderId = id });
         _logger.LogInformation("Mediator. Order {OrderId} submitted", id);
 
         await context.RespondAsync<ISubmitOrderResponse>(new
