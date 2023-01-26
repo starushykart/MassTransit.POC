@@ -7,7 +7,7 @@ public class ProcessPaymentActivity : IActivity<ProcessPaymentArgs, ProcessPayme
     public async Task<ExecutionResult> Execute(ExecuteContext<ProcessPaymentArgs> context)
     {
         // do some stuff
-        //throw new Exception("");
+        // throw new Exception("");
         return context.Completed<ProcessPaymentLog>(new { context.Arguments.OrderId });
     }
 

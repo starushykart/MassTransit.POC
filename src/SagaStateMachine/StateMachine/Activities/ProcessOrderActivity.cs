@@ -1,18 +1,10 @@
 using MassTransit;
-using Microsoft.Extensions.Logging;
 using SagaStateMachine.StateMachine.Events;
 
 namespace SagaStateMachine.StateMachine.Activities;
 
 public class ProcessOrderActivity : IStateMachineActivity<OrderState, ProcessOrder>
 {
-    private readonly ILogger<ProcessOrderActivity> _logger;
-
-    public ProcessOrderActivity(ILogger<ProcessOrderActivity> logger)
-    {
-        _logger = logger;
-    }
-
     public async Task Execute(BehaviorContext<OrderState, ProcessOrder> context, IBehavior<OrderState, ProcessOrder> next)
     {
         var builder = new RoutingSlipBuilder(NewId.NextGuid());
@@ -30,10 +22,6 @@ public class ProcessOrderActivity : IStateMachineActivity<OrderState, ProcessOrd
         var routingSlip = builder.Build();
         
         await context.Execute(routingSlip);
-        
-        _logger.LogInformation("{Activity} with routing slip for Order {OrderId} executed",
-            nameof(ProcessOrderActivity), 
-            context.Saga.CorrelationId);
 
         await next.Execute(context).ConfigureAwait(false);
     }

@@ -1,7 +1,7 @@
 using Marten.Schema;
 using MassTransit;
 
-namespace SagaStateMachine;
+namespace SagaStateMachine.StateMachine;
 
 public class OrderState : SagaStateMachineInstance
 {

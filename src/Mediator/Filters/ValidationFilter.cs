@@ -1,7 +1,7 @@
 using FluentValidation;
 using MassTransit;
 
-namespace SagaStateMachine.Mediator.Filters;
+namespace Mediator.Filters;
 
 public class ValidationFilter<T> : IFilter<SendContext<T>>
     where T : class

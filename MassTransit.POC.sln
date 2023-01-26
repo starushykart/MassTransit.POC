@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaStateMachine", "src\Sag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaConsumer", "src\SagaConsumer\SagaConsumer.csproj", "{D677A396-55F7-4AF1-8A25-7F4FF0CAAD9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediator", "src\Mediator\Mediator.csproj", "{333FA331-C9EE-496E-9A97-7F27976C879F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,5 +33,9 @@ Global
 		{D677A396-55F7-4AF1-8A25-7F4FF0CAAD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D677A396-55F7-4AF1-8A25-7F4FF0CAAD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D677A396-55F7-4AF1-8A25-7F4FF0CAAD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{333FA331-C9EE-496E-9A97-7F27976C879F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333FA331-C9EE-496E-9A97-7F27976C879F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333FA331-C9EE-496E-9A97-7F27976C879F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333FA331-C9EE-496E-9A97-7F27976C879F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

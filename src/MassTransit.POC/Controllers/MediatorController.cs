@@ -1,6 +1,6 @@
 using MassTransit.Mediator;
+using Mediator.Models;
 using Microsoft.AspNetCore.Mvc;
-using SagaStateMachine.Mediator.Models;
 using SagaStateMachine.StateMachine.Events;
 
 namespace MassTransit.POC.Controllers;
@@ -10,21 +10,25 @@ namespace MassTransit.POC.Controllers;
 public class MediatorController : ControllerBase
 {
     [HttpPost("submit")]
-    public async Task<IActionResult> Submit([FromServices]IMediator mediator, [FromBody]IdModel model)
+    public async Task<IActionResult> Submit([FromServices]IMediator mediator)
     {
         var client = mediator.CreateRequestClient<ISubmitOrder>();
-        var response = await client.GetResponse<ISubmitOrderResponse>(new
-        {
-            OrderId = model.Id
-        });
+        var response = await client.GetResponse<ISubmitOrderResponse>(new { Date = DateTime.UtcNow });
         
-        return Ok(response.Message.Text);
+        return Ok(response.Message.OrderId);
     }
     
     [HttpGet("process/{orderId:guid}")]
     public async Task<IActionResult> ProcessOrder([FromServices]IBus bus, Guid orderId)
     {
         await bus.Publish(new ProcessOrder(orderId));
+        return Ok();
+    }
+    
+    [HttpGet("approve/{orderId:guid}")]
+    public async Task<IActionResult> ApproveOrder([FromServices]IBus bus, Guid orderId)
+    {
+        await bus.Publish(new ApproveOrder(orderId));
         return Ok();
     }
     

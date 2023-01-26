@@ -1,12 +1,11 @@
-using System.Reflection;
 using Amazon.SimpleNotificationService;
 using Amazon.SQS;
 using FluentValidation;
 using MassTransit;
+using Mediator;
+using Mediator.Filters;
+using Mediator.Models;
 using SagaConsumer;
-using SagaStateMachine.Mediator;
-using SagaStateMachine.Mediator.Filters;
-using SagaStateMachine.Mediator.Models;
 using SagaStateMachine.StateMachine;
 using Weasel.Postgresql;
 
@@ -19,7 +18,7 @@ builder.Services.AddValidatorsFromAssembly(typeof(SubmitOrderValidator).Assembly
 
 builder.Services.AddMediator(x =>
 {
-    x.AddConsumer<SubmitOrderConsumer>();
+    x.AddConsumers(typeof(SubmitOrderConsumer).Assembly);
 
     x.ConfigureMediator((context, cfg) =>
     {
@@ -37,7 +36,7 @@ builder.Services.AddMassTransit(cfg =>
     {
         opt.AutoCreateSchemaObjects = AutoCreate.All;
     });
-
+    
     cfg.AddDelayedMessageScheduler();
     cfg.UsingAmazonSqs((context, x) =>
     {
@@ -52,7 +51,6 @@ builder.Services.AddMassTransit(cfg =>
             h.Config(new AmazonSQSConfig { ServiceURL = url.ToString() });
             h.Config(new AmazonSimpleNotificationServiceConfig { ServiceURL = url.ToString() });
         });
-
         x.ConfigureEndpoints(context);
     });
 });

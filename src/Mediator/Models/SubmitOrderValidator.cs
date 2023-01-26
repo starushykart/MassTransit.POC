@@ -1,11 +1,12 @@
 using FluentValidation;
 
-namespace SagaStateMachine.Mediator.Models;
+namespace Mediator.Models;
 
 public class SubmitOrderValidator : AbstractValidator<ISubmitOrder>
 {
     public SubmitOrderValidator()
     {
-        RuleFor(x => x.OrderId).NotEmpty();
+        RuleFor(x => x.Date)
+            .LessThanOrEqualTo(DateTime.UtcNow);
     }
 }
