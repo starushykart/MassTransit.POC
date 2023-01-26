@@ -19,9 +19,9 @@ public class MediatorController : ControllerBase
     }
     
     [HttpGet("process/{orderId:guid}")]
-    public async Task<IActionResult> ProcessOrder([FromServices]IBus bus, Guid orderId)
+    public async Task<IActionResult> ProcessOrder([FromServices]IBus bus, Guid orderId, bool applyDiscount = false)
     {
-        await bus.Publish(new ProcessOrder(orderId));
+        await bus.Publish(new ProcessOrder(orderId, applyDiscount));
         return Ok();
     }
     

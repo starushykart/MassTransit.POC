@@ -1,3 +1,3 @@
 namespace SagaStateMachine.StateMachine.Events;
 
-public record ProcessOrder (Guid OrderId);
+public record ProcessOrder (Guid OrderId, bool ApplyDiscount);

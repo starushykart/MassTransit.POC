@@ -9,10 +9,14 @@ public class ProcessOrderActivity : IStateMachineActivity<OrderState, ProcessOrd
     {
         var builder = new RoutingSlipBuilder(NewId.NextGuid());
 
-        builder.AddActivity("ApplyDiscountActivity", new Uri("amazonsqs://localhost:4566/000000000000/ApplyDiscount_execute"), new
+        if (context.Message.ApplyDiscount)
         {
-            context.Message.OrderId
-        });
+            builder.AddActivity("ApplyDiscountActivity",
+                new Uri("amazonsqs://localhost:4566/000000000000/ApplyDiscount_execute"), new
+                {
+                    context.Message.OrderId
+                });
+        }
 
         builder.AddActivity("ProcessPayment", new Uri("amazonsqs://localhost:4566/000000000000/ProcessPayment_execute"), new
         {

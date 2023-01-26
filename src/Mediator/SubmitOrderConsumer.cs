@@ -21,10 +21,8 @@ public class SubmitOrderConsumer : IConsumer<ISubmitOrder>
         //throw new Exception();
         var id = NewId.Next();
         
-        // some logic
-
         await _bus.Publish<OrderSubmitted>(new { OrderId = id });
-        _logger.LogInformation("Order {OrderId} submitted", id);
+        _logger.LogInformation("Mediator. Order {OrderId} submitted", id);
 
         await context.RespondAsync<ISubmitOrderResponse>(new
         {

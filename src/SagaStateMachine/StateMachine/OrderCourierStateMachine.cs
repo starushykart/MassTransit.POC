@@ -28,18 +28,18 @@ public class OrderCourierStateMachine : MassTransitStateMachine<OrderState>
         Initially(
             When(OrderSubmitted)
                 .Then(x => x.Saga.SubmittedAt = DateTime.Now)
-                .Then(x => logger.LogInformation("Order {OrderId} submitted", x.Message.OrderId))
+                .Then(x => logger.LogInformation("State machine. Order {OrderId} submitted", x.Message.OrderId))
                 .TransitionTo(Submitted));
         
         During(Submitted, 
             When(ProcessOrder)
                 .Activity(x=>x.OfType<ProcessOrderActivity>())
-                .Then(x=> _logger.LogInformation("{Activity} with routing slip for Order {OrderId} executing", nameof(ProcessOrderActivity), x.Saga.CorrelationId))
+                .Then(x=> _logger.LogInformation("State machine. {Activity} with routing slip for Order {OrderId} executing", nameof(ProcessOrderActivity), x.Saga.CorrelationId))
                 .TransitionTo(Processed));
         
         During(Processed, 
             When(ApproveOrder)
-                .Then(x=> _logger.LogInformation("Order {OrderId} approved", x.Saga.CorrelationId)));
+                .Then(x=> _logger.LogInformation("State machine. Order {OrderId} approved", x.Saga.CorrelationId)));
         
         CompositeEvent(() => OrderReady, x => x.ReadyEventStatus, ProcessOrder, ApproveOrder);
 
@@ -50,7 +50,7 @@ public class OrderCourierStateMachine : MassTransitStateMachine<OrderState>
                 .Finalize(),
             When(OrderReady)
                 .TransitionTo(Ready)
-                .Then(x=> _logger.LogInformation("Order {OrderId} ready", x.Saga.CorrelationId))
+                .Then(x=> _logger.LogInformation("State machine. Order {OrderId} ready", x.Saga.CorrelationId))
                 .Finalize(),
             When(OrderCancelled)
                 .TransitionTo(Cancelled)
@@ -58,6 +58,7 @@ public class OrderCourierStateMachine : MassTransitStateMachine<OrderState>
         
         WhenEnter(Submitted, x => x.Schedule(OrderExpired, context => new OrderExpired { OrderId = context.Saga.CorrelationId }));
         WhenEnter(Ready, x => x.Unschedule(OrderExpired));
+        WhenEnter(Cancelled, x => x.Unschedule(OrderExpired));
     }
 
     public State Submitted { get; private set; }
