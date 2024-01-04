@@ -1,7 +1,8 @@
 repo_name: starushykart/MassTransit.POC
 report_id: 7d490f0f0ce0361d1b3fc660ed13b4dc
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-09T11:01:13+00:00'
+timestamp: '2024-01-04T14:52:40+00:00'
 requested_by: starushykart
 provider: github
 branch: main
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1015/1200px-C_Sharp_wordmark.svg.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC
   detection_source: Repo Metadata
 - name: ".NET"
   description: A free, cross-platform, open source developer platform for building
@@ -27,6 +29,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1014/IoPy1dce_400x400.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/Mediator/Mediator.csproj
   detection_source: src/Mediator/Mediator.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-26 08:38:25.000000000 Z
@@ -41,8 +44,8 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/6403/default_91fc1f0ee315262794273aa1387eaf8fed8436e6.png
-  detection_source_url: src/MassTransit.POC/MassTransit.POC.csproj
-  detection_source: src/SagaStateMachine/SagaStateMachine.csproj
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/MassTransit.POC/MassTransit.POC.csproj
+  detection_source: src/MassTransit.POC/MassTransit.POC.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-03 14:30:33.000000000 Z
 - name: ASP.NET Core
@@ -56,8 +59,8 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/11331/asp.net-core.png
-  detection_source_url: src/MassTransit.POC/MassTransit.POC.csproj
-  detection_source: src/SagaStateMachine/SagaStateMachine.csproj
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/MassTransit.POC/MassTransit.POC.csproj
+  detection_source: src/MassTransit.POC/MassTransit.POC.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-03 14:30:33.000000000 Z
 - name: Docker
@@ -69,6 +72,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -78,6 +82,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC
   detection_source: Repo Metadata
 - name: NuGet
   description: The package manager for .NET
@@ -87,6 +92,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Package Managers
   image_url: https://img.stackshare.io/service/2637/6I3oEOP4_400x400.jpg
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/Mediator/Mediator.csproj
   detection_source: src/Mediator/Mediator.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-26 08:38:25.000000000 Z
@@ -99,6 +105,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Integrated Development Environment
   image_url: https://img.stackshare.io/service/1451/SR2hUhQN.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/MassTransit.POC.sln
   detection_source: MassTransit.POC.sln
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-03 14:30:33.000000000 Z
@@ -111,6 +118,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/starushykart/MassTransit.POC
   detection_source: Repo Metadata
 - name: MassTransit
   description: MassTransit is a message-based distributed application framework for
@@ -123,7 +131,7 @@ tools:
   category: Libraries
   sub_category: NuGet Packages
   image_url: https://img.stackshare.io/package/13167/default_b4059c3863f54504d1a911991b5fe93c60e9e43e.png
-  detection_source_url: src/Mediator/Mediator.csproj
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/Mediator/Mediator.csproj
   detection_source: src/Mediator/Mediator.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-26 08:38:25.000000000 Z
@@ -137,7 +145,7 @@ tools:
   category: Libraries
   sub_category: NuGet Packages
   image_url: https://img.stackshare.io/package/12981/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
-  detection_source_url: src/MassTransit.POC/MassTransit.POC.csproj
+  detection_source_url: https://github.com/starushykart/MassTransit.POC/blob/main/src/MassTransit.POC/MassTransit.POC.csproj
   detection_source: src/MassTransit.POC/MassTransit.POC.csproj
   last_updated_by: Artem Starushyk
   last_updated_on: 2023-01-03 14:30:33.000000000 Z
